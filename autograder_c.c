@@ -6,7 +6,7 @@
 int autograde(char* str)
 {
 	int status = 1;
-
+	
 	if (0 == strcmp(str, "Test 0001")) //Test factorial
 	{
 		for (int i = 0; i < 11; i++)
@@ -18,16 +18,19 @@ int autograde(char* str)
 			else
 			{
 				status = 1;
-				printf ("Test 0001 failed at %d\n", i);
+				printf ("%s failed at %d\n", str, i);
 				break;
 			}
 		}
 
 		if (0 == status)
 		{
-			printf("Test 0001 passed\n");
+			printf("%s passed\n", str);
 		}
 	}
+
+
+	
 
 	return status;
 }
@@ -42,4 +45,29 @@ int testFactorial(int n)
 	{
 		return n * testFactorial(n - 1);
 	}
+}
+
+int testPower(int n, int p)
+{
+	return 0;
+}
+
+bool testIsPrime(int n)
+{
+	return true;
+}
+
+int testNthFibonacciTerm (int n)
+{
+	return 0;
+}
+
+bool testIsMultiple(int n, int m)
+{
+	return true;
+}
+
+int testSeriesSum(int n)
+{
+	return 0;
 }

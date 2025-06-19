@@ -1,0 +1,30 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test 0001 Factorial
+      id: test-0001-factorial
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test 0001 Factorial
+        setup-command: gcc *.c -o a.out
+        command: ./a.out "Test 0001"
+        timeout: 10
+        max-score: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST-0001-FACTORIAL_RESULTS: "${{steps.test-0001-factorial.outputs.result}}"
+      with:
+        runners: test-0001-factorial
